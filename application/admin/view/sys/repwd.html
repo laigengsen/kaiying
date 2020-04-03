@@ -1,0 +1,75 @@
+{include file="public/header" /}
+<div class="main-content">
+<div class="main-content-inner">
+
+
+<div class="page-content">
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form name="formadd" action="{:url('sys/adminpasswordsave')}" method="post" class="form-horizontal" role="form" onsubmit="return validateForm()">
+			<div class="form-group" style="background-color: lightgrey">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+				<div class="col-sm-9" style="font-size: 35px;padding-left: 100px">
+					修改密码
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 账号： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$admins.name} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新密码 ：</label>
+
+				<div class="col-sm-9">
+					<input name="newpassword" type="password" id="form-field-1" placeholder="请输入密码" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 确认新密码 ：</label>
+
+				<div class="col-sm-9">
+					<input name="cnewpassword" type="password" id="form-field-1" placeholder="请输入密码" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+		    <input name="id" value="{$admins.id}" type="hidden"/>
+		    <input name="code" value="{$admins.code}" type="hidden"/>
+			<div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button class="btn btn-info" type="submit">
+						提交
+					</button>
+
+					&nbsp; &nbsp; &nbsp;
+					<button class="btn" type="reset">
+						重置
+					</button>
+				</div>
+			</div>
+		</form>
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->
+<script>
+function validateForm(){
+  var x=document.forms["formadd"]["newpassword"].value;
+  var y=document.forms["formadd"]["cnewpassword"].value;
+  if (x==null || x==""){
+  alert("新密码不能为空");
+  return false;
+  }
+  if(x!=y){
+  	alert("新密码输入不一致");
+    return false;
+  }
+}
+</script>

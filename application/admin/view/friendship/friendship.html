@@ -1,0 +1,106 @@
+  {include file="public/header" /}
+<div class="main-content">
+<div class="main-content-inner">
+
+
+<div class="page-content">
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<div class="col-sm-9">
+						<a href="{:url('friendship/friendshipadd')}" target="content">
+							<button style="width: 100px;height: 40px;margin: 15px;float: right">
+								添加新分类
+							</button>
+						</a>
+					</div>
+				</div>
+				<table id="simple-table" class="table  table-bordered table-hover">
+					<thead>
+						<tr>
+							<th style="text-align: center">友情链接名称</th>
+							<th class="hidden-480">链接地址</th>
+							<th style="text-align: center">排序</th>
+							<th style="text-align: center">操作</th>
+						</tr>
+					</thead>
+
+					<tbody>
+					{volist name="friendship" id="vo"}
+						<tr>
+
+							<td style="text-align: center">{$vo.name}</td>
+
+							<td class="hidden-480">
+								<span class="label label-sm label-warning">{$vo.link}</span>
+							</td>
+
+							<td style="text-align: center">{$vo.order}</td>
+
+							<td style="text-align: center">
+								<div class="hidden-sm hidden-xs btn-group">
+
+									<a href="{:url('menage/editcategory',['id'=>$vo.id])}" target="content">
+									<button class="btn btn-xs btn-info">
+										编辑
+									</button>
+									</a>
+									<a href="{:url('menage/deletecategory',['id'=>$vo.id])}" target="content">
+									<button class="btn btn-xs btn-danger">
+										删除
+									</button>
+									</a>
+
+								</div>
+								<div class="hidden-md hidden-lg">
+									<div class="inline pos-rel">
+										<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+											<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+										</button>
+
+										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+											<li>
+												<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+													<span class="blue">
+														<i class="ace-icon fa fa-search-plus bigger-120"></i>
+													</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+													<span class="green">
+														<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+													</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+													<span class="red">
+														<i class="ace-icon fa fa-trash-o bigger-120"></i>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+					{/volist}
+					</tbody>
+				</table>
+			</div><!-- /.span -->
+		</div><!-- /.row -->
+		<div class="hr hr-18 dotted hr-double"></div>
+		<!-- PAGE CONTENT ENDS -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->

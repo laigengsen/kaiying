@@ -1,0 +1,114 @@
+  {include file="public/header" /}
+<div class="main-content">
+<div class="main-content-inner">
+
+<div class="page-content">
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="simple-table" class="table  table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="center">
+								<label class="pos-rel">
+									<input type="checkbox" class="ace" />
+									<span class="lbl"></span>
+								</label>
+							</th>
+							<th class="detail-col">序号</th>
+							<th style="text-align: center">公司信息频道名称</th>
+							<th style="text-align: center">操作</th>
+						</tr>
+					</thead>
+
+					<tbody>
+					{volist name="tuwenlist" id="vo"}
+						<tr>
+							<td class="center">
+								<label class="pos-rel">
+									<input type="checkbox" class="ace" />
+									<span class="lbl"></span>
+								</label>
+							</td>
+
+							<td class="center" style="width: 200px">
+								<div class="action-buttons">
+									<a href="#">
+										{$vo.id}
+									</a>
+								</div>
+							</td>
+
+							<td style="text-align: center">{$vo.channelname}</td>
+
+
+
+
+							<td style="text-align: center">
+								<div class="hidden-sm hidden-xs btn-group">
+
+									<a href="{:url('Tuwenlist/tuwenedit',['id'=>$vo.id])}" target="content">
+									<button class="btn btn-success">
+										编辑
+									</button>
+									</a>
+									<a href="" target="content">
+									<button class="btn btn-success">
+										删除
+									</button>
+                                    </a>
+
+
+								</div>
+								<div class="hidden-md hidden-lg">
+									<div class="inline pos-rel">
+										<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+											<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+										</button>
+
+										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+											<li>
+												<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+													<span class="blue">
+														<i class="ace-icon fa fa-search-plus bigger-120"></i>
+													</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+													<span class="green">
+														<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+													</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+													<span class="red">
+														<i class="ace-icon fa fa-trash-o bigger-120"></i>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+					{/volist}
+					</tbody>
+				</table>
+			</div><!-- /.span -->
+		</div><!-- /.row -->
+		<div class="hr hr-18 dotted hr-double"></div>
+		<!-- PAGE CONTENT ENDS -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->

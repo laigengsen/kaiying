@@ -1,0 +1,74 @@
+  {include file="public/header" /}
+<div class="main-content">
+<div class="main-content-inner">
+
+
+<div class="page-content">
+
+
+	<form name="formadd" action="{:url('Tuwenlist/tuweneditsave')}" method="post">
+		<input type="hidden" value="{$tuwenedit.id}" name="id">
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="simple-table" class="table  table-bordered table-hover">
+					<thead>
+						<tr>
+							<td colspan="2">表格头部</td>
+						</tr>
+					</thead>
+
+
+					<tbody>
+
+						<tr>
+							<td class="center" style="width: 200px">
+								<div class="action-buttons">
+									<a href="#">
+										频道名称
+									</a>
+								</div>
+							</td>
+							<td style="text-align: center">频道内容</td>
+						</tr>
+
+
+						<tr>
+							<td class="center" style="width: 200px;font-size: 20px;line-height: 300px">
+								<div class="action-buttons">
+									{$tuwenedit.channelname}
+								</div>
+							</td>
+							<td style="text-align: center" width="200px" height="500px">
+								<script id="container" name="content" type="text/plain">
+							    {$tuwenedit.content}
+								</script>
+							</td>
+						</tr>
+
+					<tr>
+						<td colspan="2" style="text-align: center"><button type="submit">保存</button><button>返回</button></td>
+					</tr>
+					</tbody>
+				</table>
+			</div><!-- /.span -->
+		</div><!-- /.row -->
+		<div class="hr hr-18 dotted hr-double"></div>
+		<!-- PAGE CONTENT ENDS -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
+	</form>
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->
+  <script type="text/javascript" src="/static/common/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" src="/static/common/ueditor/ueditor.all.js"></script>
+  <script>
+	  var ue=UE.getEditor('container',{
+	      autoHeightEnabled:false,
+	      initialFrameWidth:1000,
+          initialFrameHeight:500,
+	  });
+  </script>

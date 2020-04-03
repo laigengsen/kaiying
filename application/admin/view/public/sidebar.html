@@ -1,0 +1,64 @@
+<div id="sidebar" class="sidebar  responsive ace-save-state">
+    <script type="text/javascript">
+        try{ace.settings.loadState('sidebar')}catch(e){}
+    </script>
+
+    <ul class="nav nav-list">
+        <li>
+            <a href="index.html">
+                <span style="color: deeppink"> 后台首页 </span>
+            </a>
+
+        </li>
+        {if $admininfo.name=='admin'}
+
+        <!-- 功能项循环输出 -->
+        {volist name="showlist" id="vo"}
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+
+                <span class="menu-text"> {$vo.name} </span>
+
+
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                {volist name="vo['child']" id="sub"}
+                <li class="">
+                    <a href="{:url($sub.link)}" target="content">
+                        {$sub.name}
+                    </a>
+
+                </li>
+                {/volist}
+            </ul>
+        </li>
+        {/volist}
+        {else/}
+        <!-- 功能项循环输出 -->
+        {volist name="showlist" id="vo"}
+        {in name="$vo.id" value="$auths"}
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <span class="menu-text"> {$vo.name} </span>
+            </a>
+
+
+            <ul class="submenu">
+                {volist name="vo['child']" id="sub"}
+                <li class="">
+                    <a href="{:url($sub.link)}" target="content">
+                        {$sub.name}
+                    </a>
+                </li>
+                {/volist}
+            </ul>
+        </li>
+        {/in}
+        {/volist}
+        {/if}
+    </ul><!-- /.nav-list -->
+
+</div>

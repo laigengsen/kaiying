@@ -1,0 +1,106 @@
+{include file="public/header" /}
+<div class="main-content">
+	<div class="main-content-inner">
+
+
+		<div class="page-content">
+
+
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<form action="{:url('news/newsaddsave')}" method="post" class="form-horizontal" role="form">
+						<div class="form-group" style="background-color: lightgrey">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+							<div class="col-sm-9" style="font-size: 35px;padding-left: 100px">
+								添加新闻
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新闻类别： </label>
+
+							<div class="col-sm-9">
+								<select style="" id="sel" name="cateid">
+									<option>请选择新闻类别</option>
+									{volist name="newseditcate" id="vo2"}
+									<option value="{$vo2.id}" id="att">{$vo2.cate}</option>
+									{/volist}
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新闻标题： </label>
+
+							<div class="col-sm-9">
+								<input name="producttitle" type="text" id="form-field-1" placeholder="新闻标题" class="col-xs-10 col-sm-5" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新闻关键字： </label>
+
+							<div class="col-sm-9">
+								<input name="productkeycode" type="text" id="form-field-1" placeholder="新闻关键字" class="col-xs-10 col-sm-5" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新闻描述： </label>
+
+							<div class="col-sm-9">
+								<textarea name="productdescrib" class="col-xs-10 col-sm-5" rows="10" placeholder="新闻描述"></textarea>
+							</div>
+						</div>
+
+						<div class="clearfix form-actions">
+							<div class="col-md-offset-3 col-md-9">
+								<button class="btn btn-info" type="submit">
+
+									提交
+								</button>
+
+								&nbsp; &nbsp; &nbsp;
+								<button class="btn" type="reset">
+
+									重置
+								</button>
+							</div>
+						</div>
+						<!-- </form> -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+    $('#sub').click(function () {
+        // alert("测试");
+        ajaxPost();
+    })
+    function ajaxPost(){
+        var formData=new FormData();
+        if($('#file')[0].files.length<=0){
+            alert("请选择文件");
+            return;
+        }
+        formData.append('image',$('#file')[0].files[0]);
+        $.ajax({
+            type:'post',
+            url:"{:url('Menage/picture')}",
+            data:formData,
+            cache:false,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                if(data){
+                    var html='<img src="'+data.src+'" width="480" height="135">';
+                    $('#content').html(html);
+                    $('[name=picture]').val(data.src)
+                }else{
+                    alert("上传失败");
+                }
+
+            }
+        })
+    }
+</script>

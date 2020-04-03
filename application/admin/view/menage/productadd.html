@@ -1,0 +1,135 @@
+{include file="public/header" /}
+<div class="main-content">
+	<div class="main-content-inner">
+
+
+		<div class="page-content">
+
+
+
+
+			<div class="row">
+				<div class="col-xs-12">
+
+					<!-- PAGE CONTENT BEGINS -->
+					<form action="{:url('menage/productaddsave')}" method="post" class="form-horizontal" role="form">
+						<div class="form-group" style="background-color: lightgrey">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+							<div class="col-sm-9" style="font-size: 35px;padding-left: 100px">
+								添加新产品
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 名称： </label>
+
+							<div class="col-sm-9">
+								<input name="name" type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型： </label>
+
+							<div class="col-sm-9">
+								<select style="width: 50%;height: 30px" id="sel" name="id">
+									<option>请选择产品类别</option>
+									{volist name="productcategory" id="vo"}
+									<option value="{$vo.id}" id="att">{$vo.name}</option>
+									{/volist}
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片： </label>
+
+							<div class="col-sm-9">
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="widget-box">
+											<div class="widget-header">
+												<h4 class="widget-title">广告图片</h4>
+
+												<div class="widget-toolbar">
+													<a href="#" data-action="collapse">
+														<i class="ace-icon fa fa-chevron-up"></i>
+													</a>
+
+													<a href="#" data-action="close">
+														<i class="ace-icon fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+													<div class="form-group">
+														<div class="col-xs-12">
+
+
+
+															选择图像文件：<input type="file" class="file" name="image" id="file"><br/>
+															<input name="picture" type="hidden" value="" id="picture">
+															<button onclick="return false;" id='sub'>点击上传</button>
+
+															<div id="content"></div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix form-actions">
+							<div class="col-md-offset-3 col-md-9">
+								<button class="" type="submit">
+
+									提交
+								</button>
+
+								&nbsp; &nbsp; &nbsp;
+								<button class="" type="reset">
+									重置
+								</button>
+							</div>
+						</div>
+						<!-- </form> -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+    $('#sub').click(function () {
+        // alert("测试");
+        ajaxPost();
+    })
+    function ajaxPost(){
+        var formData=new FormData();
+        if($('#file')[0].files.length<=0){
+            alert("请选择文件");
+            return;
+        }
+        formData.append('image',$('#file')[0].files[0]);
+        $.ajax({
+            type:'post',
+            url:"{:url('Menage/picture')}",
+            data:formData,
+            cache:false,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                if(data){
+                    var html='<img src="'+data.src+'" width="480" height="135">';
+                    $('#content').html(html);
+                    $('[name=picture]').val(data.src)
+                }else{
+                    alert("上传失败");
+                }
+
+            }
+        })
+    }
+</script>
